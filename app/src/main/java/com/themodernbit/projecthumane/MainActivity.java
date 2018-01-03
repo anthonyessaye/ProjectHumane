@@ -37,6 +37,15 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Work in progress!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Fragment newFragment = null;
+
+                newFragment = new CameraFragment();
+
+                toolbar.setTitle("Camera");
+                toolbar.setVisibility(View.INVISIBLE);
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_main, newFragment);
+                ft.commit();
             }
         });
 
@@ -95,14 +104,16 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
 
-         //  newFragment = new LevelFragment();
-          // toolbar.setTitle(LevelName);
+
 
             Intent goHomeIntent = new Intent(this, MainActivity.class);
             startActivity(goHomeIntent);
 
         } else if (id == R.id.nav_camera) {
 
+              newFragment = new CameraFragment();
+              toolbar.setTitle("Camera");
+              toolbar.setVisibility(View.INVISIBLE);
 
         } else if (id == R.id.nav_settings) {
 
