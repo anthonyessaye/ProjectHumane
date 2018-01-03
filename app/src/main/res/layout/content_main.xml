@@ -9,25 +9,88 @@
     tools:showIn="@layout/app_bar_main">
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:weightSum="1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:paddingBottom="20dp"
+                android:textColor="@color/colorAccent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBeginner"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:text="@string/btnBeginnerText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"/>
+
+            <Button
+                android:id="@+id/btnIntermediate"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:text="@string/btnIntermediateText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"/>
+
+            <Button
+                android:id="@+id/btnAdvanced"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:text="@string/btnAdvancedText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"/>
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
-
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Test"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                android:layout_weight="1"/>
+                android:id="@+id/btnExpert"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:text="@string/btnExpertText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"/>
+
+            <Button
+                android:id="@+id/btnExtra"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:text="@string/btnExtraText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"/>
 
 
         </LinearLayout>
