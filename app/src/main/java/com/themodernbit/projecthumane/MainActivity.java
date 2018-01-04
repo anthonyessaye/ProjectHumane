@@ -2,6 +2,7 @@ package com.themodernbit.projecthumane;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, CameraFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private String LevelName = "Beginner";
@@ -42,9 +43,9 @@ public class MainActivity extends AppCompatActivity
                 newFragment = new CameraFragment();
 
                 toolbar.setTitle("Camera");
-                toolbar.setVisibility(View.INVISIBLE);
+                toolbar.setVisibility(View.GONE);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_main, newFragment);
+                ft.replace(R.id.drawer_layout, newFragment);
                 ft.commit();
             }
         });
@@ -83,10 +84,6 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -99,31 +96,28 @@ public class MainActivity extends AppCompatActivity
         Fragment newFragment = null;
 
 
-
         int id = item.getItemId();
+        switch (id) {
+            case R.id.nav_home:
+                Intent goHomeIntent = new Intent(this, MainActivity.class);
+                startActivity(goHomeIntent);
+                break;
 
-        if (id == R.id.nav_home) {
+            case R.id.nav_camera:
+                newFragment = new CameraFragment();
+                toolbar.setTitle("Camera");
+                toolbar.setVisibility(View.GONE);
+                break;
 
-
-
-            Intent goHomeIntent = new Intent(this, MainActivity.class);
-            startActivity(goHomeIntent);
-
-        } else if (id == R.id.nav_camera) {
-
-              newFragment = new CameraFragment();
-              toolbar.setTitle("Camera");
-              toolbar.setVisibility(View.INVISIBLE);
-
-        } else if (id == R.id.nav_settings) {
+            case R.id.nav_settings:
+                break;
 
         }
 
-
-        if(newFragment != null){
+     if(newFragment != null){
 
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_main, newFragment);
+            ft.replace(R.id.drawer_layout, newFragment);
             ft.commit();
 
         }
@@ -131,5 +125,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
