@@ -14,5 +14,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="take_picture">Capture</string>
+    <string name="analyze_picture">Analyze</string>
+    <string name="analyze_picture_2">Analyze Picture</string>
+    <string name="show_tags">Show Objects</string>
 
 </resources>

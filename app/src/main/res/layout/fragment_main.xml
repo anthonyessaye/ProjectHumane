@@ -1,0 +1,105 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:id="@+id/fragment_main"
+    tools:context="com.themodernbit.projecthumane.MainFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:weightSum="1">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:paddingBottom="20dp"
+            android:textColor="@color/colorAccent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBeginner"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:onClick="onBeginnerClick"
+                android:text="@string/btnBeginnerText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite" />
+
+            <Button
+                android:id="@+id/btnIntermediate"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:onClick="onIntermediateClick"
+                android:text="@string/btnIntermediateText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite" />
+
+            <Button
+                android:id="@+id/btnAdvanced"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:onClick="onAdvancedClick"
+                android:text="@string/btnAdvancedText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnExpert"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:onClick="onExpertClick"
+                android:text="@string/btnExpertText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite" />
+
+            <Button
+                android:id="@+id/btnExtra"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedbutton"
+                android:onClick="onExtrasClick"
+                android:text="@string/btnExtraText"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -18,10 +17,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.themodernbit.projecthumane.CameraActions.CameraActivity;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, CameraFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        LevelFragment.OnFragmentInteractionListener, MainFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar;
+    private FloatingActionButton fab;
     private String LevelName = "Beginner";
 
     @Override
@@ -32,23 +35,22 @@ public class MainActivity extends AppCompatActivity
         toolbar.setTitle("Project Humane");
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Work in progress!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Fragment newFragment = null;
 
-                newFragment = new CameraFragment();
+                // Float button opens camera view
+               // DealWithFragments(new CameraFragment(), "Camera");
+               // fab.setVisibility(View.GONE);
+               // toolbar.setVisibility(View.GONE);
+                Intent theIntent = new Intent(getApplicationContext(), CameraActivity.class);
+                startActivity(theIntent);
 
-                toolbar.setTitle("Camera");
-                toolbar.setVisibility(View.GONE);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.drawer_layout, newFragment);
-                ft.commit();
             }
         });
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,18 +58,51 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // This piece of code is for nav bar
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        DealWithFragments(new MainFragment(), "Main");
     }
+
+
+    /* This code is for the buttons */
+
+    public void onBeginnerClick(View view){
+        DealWithFragments(new LevelFragment(), "Beginner");
+    }
+
+    public void onIntermediateClick(View view){
+        DealWithFragments(new LevelFragment(), "Intermediate");
+    }
+
+    public void onAdvancedClick(View view){
+        DealWithFragments(new LevelFragment(), "Advanced");
+    }
+
+    public void onExpertClick(View view){
+        DealWithFragments(new LevelFragment(), "Expert");
+    }
+
+    public void onExtrasClick(View view){
+        DealWithFragments(new LevelFragment(),"Extras");
+    }
+
+
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        int count = getFragmentManager().getBackStackEntryCount();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            toolbar.setVisibility(View.VISIBLE);
+            fab.setVisibility(View.VISIBLE);
             super.onBackPressed();
         }
+
     }
 
     @Override
@@ -93,20 +128,22 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
 
-        Fragment newFragment = null;
 
 
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_home:
-                Intent goHomeIntent = new Intent(this, MainActivity.class);
-                startActivity(goHomeIntent);
+                DealWithFragments(new MainFragment(), "Home");
+                toolbar.setVisibility(View.VISIBLE);
+                fab.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.nav_camera:
-                newFragment = new CameraFragment();
-                toolbar.setTitle("Camera");
+                Intent theIntent = new Intent(this, CameraActivity.class);
+                startActivity(theIntent);
+
                 toolbar.setVisibility(View.GONE);
+                fab.setVisibility(View.GONE);
                 break;
 
             case R.id.nav_settings:
@@ -114,18 +151,28 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-     if(newFragment != null){
 
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.drawer_layout, newFragment);
-            ft.commit();
-
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    // Function to restack fragments
+    public void DealWithFragments(Fragment aFragment, String theTitle){
+
+
+
+        Fragment newFragment = null;
+        newFragment =  aFragment;
+        toolbar.setTitle(theTitle);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.addToBackStack("");
+        ft.replace(R.id.content_main, newFragment);
+        ft.commit();
+    }
+
 
     @Override
     public void onFragmentInteraction(Uri uri) {
