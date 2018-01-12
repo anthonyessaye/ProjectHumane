@@ -53,6 +53,8 @@ public class CapturedWordActivity extends AppCompatActivity {
         for (int i = 0; i < TagsListArray.length; ++i) {
             list.add(CopyOfList[i] + " " + TranslatorObject.getWordsToTranslate()[i] );
         }
+
+
         final StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.text_view_layout, list);
         listview.setAdapter(adapter);
 
