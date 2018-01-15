@@ -2,11 +2,16 @@ package com.themodernbit.projecthumane;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,21 +24,29 @@ import android.view.MenuItem;
 
 import com.themodernbit.projecthumane.CameraActions.CameraActivity;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        LevelFragment.OnFragmentInteractionListener, MainFragment.OnFragmentInteractionListener{
+        LevelFragment.OnFragmentInteractionListener, MainFragment.OnFragmentInteractionListener,
+        SettingsFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
-    private String LevelName = "Beginner";
+    private final String LevelName = "Beginner";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setLanguageForApp("en");
+
+
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Project Humane");
         setSupportActionBar(toolbar);
+
+
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +111,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            toolbar.setTitle("Project Humane");
             toolbar.setVisibility(View.VISIBLE);
             fab.setVisibility(View.VISIBLE);
             super.onBackPressed();
@@ -123,6 +137,9 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -147,6 +164,9 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_settings:
+                DealWithFragments(new SettingsFragment(), "Settings");
+                toolbar.setVisibility(View.VISIBLE);
+                fab.setVisibility(View.VISIBLE);
                 break;
 
         }
@@ -172,6 +192,30 @@ public class MainActivity extends AppCompatActivity
         ft.replace(R.id.content_main, newFragment);
         ft.commit();
     }
+
+
+    private void setLanguageForApp(String languageToLoad){
+        Locale locale;
+        if(languageToLoad.equals("not-set")){ //use any value for default
+            locale = Locale.getDefault();
+        }
+        else {
+            locale = new Locale(languageToLoad);
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        fab.setVisibility(View.VISIBLE);
+    }
+
+
 
 
     @Override

@@ -18,4 +18,8 @@
     <string name="analyze_picture">تحليل</string>
     <string name="analyze_picture_2">تحليل الصورة</string>
     <string name="show_tags">عرض الاشياء</string>
+
+    <string name="menu_home">الصفحة الرئيسية</string>
+    <string name="menu_camera">كاميرا</string>
+    <string name="menu_settings">الإعدادات</string>
     </resources>

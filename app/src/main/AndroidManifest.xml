@@ -29,7 +29,18 @@
         <activity android:name=".CameraActions.CameraActivity" />
         <activity android:name=".CameraActions.PicturePreviewActivity" />
         <activity android:name=".CapturedWordActivity" />
-        <activity android:name=".TagsActivities.ChosenTranslationActivity"></activity>
+        <activity android:name=".TagsActivities.ChosenTranslationActivity" />
+
+        <receiver
+            android:name=".NotificationTaskerPackage.NotificationTasker"
+            android:enabled="true"
+            android:exported="false"></receiver>
+
+        <service
+            android:name=".NotificationTaskerPackage.NotificationTaskerService"
+            android:exported="false"></service>
+
+        <activity android:name=".SignUpActivity"></activity>
     </application>
 
 </manifest>
