@@ -2,6 +2,7 @@ package com.themodernbit.projecthumane;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,7 +44,7 @@ public class CapturedWordActivity extends AppCompatActivity {
         TranslatorObject = new TranslateForMe(TagsListArray);
         TranslatorObject.TranslateWords();
 
-        while(!TranslatorObject.isDone){
+        while (!TranslatorObject.isDone) {
 
         }
 
@@ -52,7 +53,7 @@ public class CapturedWordActivity extends AppCompatActivity {
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < TagsListArray.length; ++i) {
-            list.add(CopyOfList[i] + " " + TranslatorObject.getWordsToTranslate()[i] );
+            list.add(CopyOfList[i] + " " + TranslatorObject.getWordsToTranslate()[i]);
         }
 
 
@@ -74,10 +75,6 @@ public class CapturedWordActivity extends AppCompatActivity {
 
         });
     }
-
-
-
-
 
 
 }

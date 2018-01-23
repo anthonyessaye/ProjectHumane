@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.auth.Credentials;
+
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
@@ -16,7 +17,7 @@ import com.microsoft.projectoxford.vision.contract.Word;
 
 public class TranslateForMe {
 
-    private static final String API_KEY = "AIzaSyDZWiRK2QdioNNdm1yA9a-KaF2HTLUEBjE";
+    private static final String API_KEY = "AIzaSyDg41JnK2PZGWODyWBpzDGyRySP-kCNisk";
     private String[] WordsToTranslate;
     private Translation translation;
 
@@ -27,7 +28,6 @@ public class TranslateForMe {
     }
 
 
-    @SuppressLint("StaticFieldLeak")
     public void TranslateWords() {
         Log.e("TAG","Translation Has Started");
         new AsyncTask<Void, Void, Void>() {
@@ -45,11 +45,18 @@ public class TranslateForMe {
 
 
                 }
-                Log.e("TAG","Translation Has Ended");
-                isDone = true;
+
+
                 return null;
             }
 
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Log.e("TAG","Translation Has Ended");
+                isDone = true;
+            }
         }.execute();
 
     }

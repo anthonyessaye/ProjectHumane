@@ -6,16 +6,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">الإعدادات</string>
-    <string name="btnBeginnerText">مبتدئ</string>
-    <string name="btnIntermediateText">متوسط</string>
-    <string name="btnAdvancedText">متطور</string>
-    <string name="btnExpertText">مختص</string>
     <string name="btnExtraText">إضافات</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
-    <string name="take_picture">التقاط صورة</string>
-    <string name="analyze_picture">تحليل</string>
     <string name="analyze_picture_2">تحليل الصورة</string>
     <string name="show_tags">عرض الاشياء</string>
 

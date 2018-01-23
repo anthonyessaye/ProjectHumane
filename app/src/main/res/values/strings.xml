@@ -5,16 +5,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="btnBeginnerText">Beginner</string>
-    <string name="btnIntermediateText">Intermediate</string>
-    <string name="btnAdvancedText">Advanced</string>
-    <string name="btnExpertText">Expert</string>
     <string name="btnExtraText">Extras</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="take_picture">Capture</string>
-    <string name="analyze_picture">Analyze</string>
     <string name="analyze_picture_2">Analyze Picture</string>
     <string name="show_tags">Show Objects</string>
     <string name="menu_home">Home</string>

@@ -54,7 +54,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.0.+'
 
 
-    compile('com.google.apis:google-api-services-translate:v2-rev47-1.22.0') {
+    compile('com.google.apis:google-api-services-translate:v2-rev51-1.23.0') {
 
         exclude group: 'com.google.guava'
 
