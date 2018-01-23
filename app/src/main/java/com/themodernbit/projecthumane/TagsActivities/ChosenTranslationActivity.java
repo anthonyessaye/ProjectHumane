@@ -32,7 +32,9 @@ public class ChosenTranslationActivity extends AppCompatActivity {
 
 
         originalWord.setText(originalWord.getText() + " " + CombinedLanguages[0]);
-        translatedWord.setText(translatedWord.getText() + " " + CombinedLanguages[1]);
+
+        for(int i = 1 ; i < CombinedLanguages.length; i++)
+        translatedWord.setText(translatedWord.getText() + " " + CombinedLanguages[i]);
 
 
 

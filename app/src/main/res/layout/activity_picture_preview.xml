@@ -19,13 +19,15 @@
         <com.themodernbit.projecthumane.CameraActions.MessageView
             android:id="@+id/nativeCaptureResolution"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
 
         <com.themodernbit.projecthumane.CameraActions.MessageView
             android:id="@+id/captureLatency"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
         <com.themodernbit.projecthumane.CameraActions.MessageView
             android:id="@+id/captureDescription"

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.themodernbit.projecthumane.StaticClasses.StableArrayAdapter;
 import com.themodernbit.projecthumane.TagsActivities.ChosenTranslationActivity;
 import com.themodernbit.projecthumane.TagsActivities.TranslateForMe;
 
@@ -74,30 +75,6 @@ public class CapturedWordActivity extends AppCompatActivity {
         });
     }
 
-    private class StableArrayAdapter extends ArrayAdapter<String> {
-
-        HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
-
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  ArrayList<String> objects) {
-            super(context, textViewResourceId, objects);
-            for (int i = 0; i < objects.size(); ++i) {
-                mIdMap.put(objects.get(i), i);
-            }
-        }
-
-        @Override
-        public long getItemId(int position) {
-            String item = getItem(position);
-            return mIdMap.get(item);
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return true;
-        }
-
-    }
 
 
 

@@ -1,13 +1,25 @@
 package com.themodernbit.projecthumane;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.themodernbit.projecthumane.ScenariosPackage.Scenario;
+import com.themodernbit.projecthumane.ScenariosPackage.ScenarioDBHandler;
+import com.themodernbit.projecthumane.StaticClasses.ScenarioDBStaticData;
+import com.themodernbit.projecthumane.StaticClasses.StableArrayAdapter;
+import com.themodernbit.projecthumane.TagsActivities.ChosenTranslationActivity;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class LevelFragment extends Fragment {
@@ -22,18 +34,12 @@ public class LevelFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
     public LevelFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LevelFragment.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static LevelFragment newInstance(String param1, String param2) {
         LevelFragment fragment = new LevelFragment();
@@ -57,7 +63,40 @@ public class LevelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_level, container, false);
+        View theView = (View) inflater.inflate(R.layout.fragment_level, container, false);
+
+        ScenarioDBHandler dbHandler = new ScenarioDBHandler(theView.getContext(), null, null, 1);
+        dbHandler.FillScenarioDB();
+
+        Scenario[] theScenarios = dbHandler.getScenario();
+
+        final ListView listview = (ListView) theView.findViewById(R.id.listviewLevelFragment);
+
+        final ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < 2; ++i) {
+            list.add(theScenarios[i].getScenarioName());
+        }
+
+        final StableArrayAdapter adapter = new StableArrayAdapter(theView.getContext(), R.layout.text_view_layout, list);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
+                final String item = (String) parent.getItemAtPosition(position);
+
+                //Intent theIntent = new Intent(t, ChosenTranslationActivity.class);
+               // theIntent.putExtra(KEY_TAG_TOTRANSLATE, item.toString());
+                //startActivity(theIntent);
+
+            }
+
+        });
+
+
+        return theView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,16 +128,6 @@ public class LevelFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

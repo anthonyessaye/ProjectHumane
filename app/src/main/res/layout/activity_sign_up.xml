@@ -74,12 +74,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="50dp">
+
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:onClick="onSignupClick"
 
-            />
+            android:text="Sign Up" />
     </LinearLayout>
 
 </LinearLayout>

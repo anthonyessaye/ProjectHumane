@@ -21,8 +21,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.themodernbit.projecthumane.CameraActions.CameraActivity;
+import com.themodernbit.projecthumane.User.UserDBHandler;
+
+import org.w3c.dom.Text;
 
 import java.util.Locale;
 
@@ -33,7 +37,10 @@ public class MainActivity extends AppCompatActivity
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    private TextView TitleText;
     private final String LevelName = "Beginner";
+
+    private UserDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,13 @@ public class MainActivity extends AppCompatActivity
         toolbar.setTitle("Project Humane");
         setSupportActionBar(toolbar);
 
+        Intent PreviousIntent = new Intent();
+
+        if(PreviousIntent.getExtras() != null)
+       // dbHandler = PreviousIntent.getExtras().getParcelable("key");
+
+
+        TitleText = (TextView) findViewById(R.id.textViewTitle);
 
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -76,25 +90,38 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         DealWithFragments(new MainFragment(), "Main");
+
+
+        try {
+          //  loadUser(getCurrentFocus());
+        }
+
+        catch (Exception e){
+            Intent theIntent = new Intent(this,SignUpActivity.class);
+            startActivity(theIntent);
+        }
+    }
+
+    public void loadUser(View view) {
+
+
+            TitleText.setText(dbHandler.loadHandler());
+
+
+
+
+
     }
 
 
     /* This code is for the buttons */
 
-    public void onBeginnerClick(View view){
-        DealWithFragments(new LevelFragment(), "Beginner");
+    public void onScenarioClick(View view){
+        DealWithFragments(new LevelFragment(), "Scenario");
     }
 
-    public void onIntermediateClick(View view){
-        DealWithFragments(new LevelFragment(), "Intermediate");
-    }
-
-    public void onAdvancedClick(View view){
-        DealWithFragments(new LevelFragment(), "Advanced");
-    }
-
-    public void onExpertClick(View view){
-        DealWithFragments(new LevelFragment(), "Expert");
+    public void onTestsClick(View view){
+        DealWithFragments(new LevelFragment(), "Tests");
     }
 
     public void onExtrasClick(View view){

@@ -60,13 +60,7 @@ dependencies {
 
     }
 
-    compile('com.google.cloud:google-cloud-translate:0.5.0') {
-
-        exclude group: 'io.grpc', module: 'grpc-all'
-        exclude group: 'com.google.protobuf', module: 'protobuf-java'
-        exclude group: 'com.google.api-client', module: 'google-api-client-appengine'
-
-    }
+    compile('com.google.cloud:google-cloud-translate:1.15.0')
 
 }
 

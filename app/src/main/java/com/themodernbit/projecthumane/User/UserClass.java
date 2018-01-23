@@ -8,11 +8,15 @@ public class UserClass {
 
     private String userName;
     private String userPhoneNumber;
+    private double userProgress;
+    private String userPreferredLanguage;
 
     public UserClass(){}
-    public UserClass(String name, String phone){
+    public UserClass(String name, String phone, String Language){
         this.userName = name;
         this.userPhoneNumber = phone;
+        this.userProgress = 0.0;
+        this.userPreferredLanguage = Language;
     }
 
     public void setUserName(String UserName){
@@ -29,6 +33,22 @@ public class UserClass {
 
     public String getUserPhoneNumber(){
         return this.userPhoneNumber;
+    }
+
+    public void setUserProgress(double UserProgress){
+        this.userProgress = UserProgress;
+    }
+
+    public double getUserProgress(){
+        return this.userProgress;
+    }
+
+    public void setUserPreferredLanguage(String UserPreferredLanguage){
+        this.userPreferredLanguage = UserPreferredLanguage;
+    }
+
+    public String getUserPreferredLanguage(){
+        return this.userPreferredLanguage;
     }
 
 }

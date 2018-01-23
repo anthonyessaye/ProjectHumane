@@ -89,15 +89,14 @@ public class SettingsFragment extends Fragment {
     }
 
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
+     Intent notifyIntent = new Intent(this,MyReceiver.class);
+     PendingIntent pendingIntent = PendingIntent.getBroadcast
+     (context, NOTIFICATION_REMINDER_NIGHT, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+     AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
+     1000 * 60 * 60 * 24, pendingIntent);
      */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
