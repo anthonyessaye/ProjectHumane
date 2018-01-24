@@ -73,7 +73,7 @@ public class LevelFragment extends Fragment {
         final ListView listview = (ListView) theView.findViewById(R.id.listviewLevelFragment);
 
         final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < 4; i++) {
             list.add(theScenarios[i].getScenarioName());
         }
 

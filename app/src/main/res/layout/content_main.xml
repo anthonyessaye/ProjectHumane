@@ -9,7 +9,38 @@
     tools:context="com.themodernbit.projecthumane.MainActivity"
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical"
-    android:layout_gravity="center_horizontal">
+    android:layout_gravity="">
+
+<android.support.design.widget.TabLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    app:tabSelectedTextColor="@color/tabSelectedText"
+    app:tabIndicatorColor="@color/tabIndicator"
+    app:tabIndicatorHeight="3dp"
+    app:tabTextColor="@color/tabText"
+    app:tabMode="fixed"
+    app:tabGravity="fill"
+    android:id="@+id/tbl_pages">
+</android.support.design.widget.TabLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/vp_pages">
+
+        </android.support.v4.view.ViewPager>
+
+    </FrameLayout>
+
+
+
+
 
 
 </LinearLayout>

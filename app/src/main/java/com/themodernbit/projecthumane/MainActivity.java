@@ -9,8 +9,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -23,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.themodernbit.projecthumane.Beta.FragmentAdapter;
 import com.themodernbit.projecthumane.CameraActions.CameraActivity;
 import com.themodernbit.projecthumane.User.UserDBHandler;
 
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Project Humane");
         setSupportActionBar(toolbar);
+        toolbar.setVisibility(View.GONE);
 
         Intent PreviousIntent = new Intent();
 
@@ -89,9 +94,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        DealWithFragments(new MainFragment(), "Main");
-
-
+/*
         try {
           //  loadUser(getCurrentFocus());
         }
@@ -100,33 +103,27 @@ public class MainActivity extends AppCompatActivity
             Intent theIntent = new Intent(this,SignUpActivity.class);
             startActivity(theIntent);
         }
+
+        */
+
+        ViewPager vp_pages = (ViewPager) findViewById(R.id.vp_pages);
+        PagerAdapter pagerAdapter = new FragmentAdapter(getSupportFragmentManager());
+        vp_pages.setAdapter(pagerAdapter);
+
+
+        TabLayout tbl_pages = (TabLayout) findViewById(R.id.tbl_pages);
+        tbl_pages.setupWithViewPager(vp_pages);
+
+
+
+
     }
 
     public void loadUser(View view) {
-
-
             TitleText.setText(dbHandler.loadHandler());
-
-
-
-
-
     }
 
 
-    /* This code is for the buttons */
-
-    public void onScenarioClick(View view){
-        DealWithFragments(new LevelFragment(), "Scenario");
-    }
-
-    public void onTestsClick(View view){
-        DealWithFragments(new LevelFragment(), "Tests");
-    }
-
-    public void onExtrasClick(View view){
-        DealWithFragments(new LevelFragment(),"Extras");
-    }
 
 
 
@@ -205,10 +202,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
     // Function to restack fragments
     public void DealWithFragments(Fragment aFragment, String theTitle){
-
-
 
         Fragment newFragment = null;
         newFragment =  aFragment;

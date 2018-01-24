@@ -18,6 +18,7 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "scenarioID";
     private static final String COLUMN_NAME = "scenarioName";
     private static final String COLUMN_COMPLETENESS = "isScenarioComplete";
+    public int ScenarioCount = 0;
 
     public ScenarioDBHandler(Context context, String DBname, SQLiteDatabase.CursorFactory theFactory, int version){
         super(context,DBname,theFactory,version);
@@ -94,6 +95,12 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
         insertScenario(theScenario);
 
         theScenario = new Scenario(1,"Job Interview Scenario");
+        insertScenario(theScenario);
+
+        theScenario = new Scenario(2, "Restaurant Scenario");
+        insertScenario(theScenario);
+
+        theScenario = new Scenario(3, "Transportation Scenario");
         insertScenario(theScenario);
 
     }

@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.memetix.mst.language.Language;
+import com.memetix.mst.translate.Translate;
 import com.themodernbit.projecthumane.StaticClasses.StableArrayAdapter;
 import com.themodernbit.projecthumane.TagsActivities.ChosenTranslationActivity;
 import com.themodernbit.projecthumane.TagsActivities.TranslateForMe;
@@ -44,10 +46,9 @@ public class CapturedWordActivity extends AppCompatActivity {
         TranslatorObject = new TranslateForMe(TagsListArray);
         TranslatorObject.TranslateWords();
 
-        while (!TranslatorObject.isDone) {
 
-        }
 
+        while(!TranslatorObject.isDone){}
 
         final ListView listview = (ListView) findViewById(R.id.listview);
 
@@ -76,5 +77,31 @@ public class CapturedWordActivity extends AppCompatActivity {
         });
     }
 
+
+
+    class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
+
+        @Override
+
+        protected Boolean doInBackground(Void... arg0) {
+
+            Translate.setClientId("MicrosoftTranslatorJavaAPI");
+            Translate.setClientSecret("a5f63baeeb9947ee9fbed3fda6c70770");
+
+            try {
+
+              //  translatedText = Translate.execute("I should probably set this to something a little less profane", Language.ENGLISH, Language.FRENCH);
+
+            } catch(Exception e) {
+
+            //    translatedText = e.toString();
+
+            }
+
+            return true;
+
+        }
+
+    }
 
 }

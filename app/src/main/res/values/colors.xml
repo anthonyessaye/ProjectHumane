@@ -8,4 +8,7 @@
     <color name="colorAccent">#000000</color>
 
     <color name="colorTextWhite">#FFFFFF</color>
+    <color name="tabSelectedText">#FFFFFF</color>
+    <color name="tabIndicator">#FFFFFF</color>
+    <color name="tabText">#000</color>
 </resources>
