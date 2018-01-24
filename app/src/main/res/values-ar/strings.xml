@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Project Humane</string>
+    <string name="app_name">Emerald</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -16,4 +16,9 @@
     <string name="menu_home">الصفحة الرئيسية</string>
     <string name="menu_camera">كاميرا</string>
     <string name="menu_settings">الإعدادات</string>
-    </resources>
+    <string name="sign_up_name">اسم:</string>
+    <string name="sign_up_phone">رقم الهاتف:</string>
+    <string name="btnScenariosText">سيناريوهات</string>
+    <string name="btnTestsText">الاختبارات</string>
+
+</resources>

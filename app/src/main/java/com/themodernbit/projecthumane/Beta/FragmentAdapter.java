@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.themodernbit.projecthumane.LevelFragment;
+import com.themodernbit.projecthumane.UserFragment;
 
 /**
  * Created by antho on 1/24/2018.
@@ -23,7 +24,7 @@ private static String KEY_TABNUMBER = "KeyNumber";
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new LevelFragment();
+                return new UserFragment();
             case 1:
                 Bundle args = new Bundle();
                 args.putInt(KEY_TABNUMBER, 1);

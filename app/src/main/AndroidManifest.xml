@@ -4,7 +4,7 @@
     package="com.themodernbit.projecthumane">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -35,13 +35,14 @@
         <receiver
             android:name=".NotificationTaskerPackage.NotificationTasker"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
 
         <service
             android:name=".NotificationTaskerPackage.NotificationTaskerService"
-            android:exported="false"></service>
+            android:exported="false" />
 
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".ScenarioExplanationActivity"></activity>
     </application>
 
 </manifest>

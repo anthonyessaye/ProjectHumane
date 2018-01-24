@@ -37,7 +37,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         LevelFragment.OnFragmentInteractionListener, MainFragment.OnFragmentInteractionListener,
-        SettingsFragment.OnFragmentInteractionListener {
+        SettingsFragment.OnFragmentInteractionListener, UserFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
@@ -134,9 +134,10 @@ public class MainActivity extends AppCompatActivity
         int count = getFragmentManager().getBackStackEntryCount();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+
+        else {
             toolbar.setTitle("Project Humane");
-            toolbar.setVisibility(View.VISIBLE);
             fab.setVisibility(View.VISIBLE);
             super.onBackPressed();
         }
