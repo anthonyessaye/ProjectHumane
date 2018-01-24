@@ -51,7 +51,7 @@ private static String KEY_TABNUMBER = "KeyNumber";
 
                 return "My Courses";
             case 1:
-                return "Featured";
+                return "Scenarios";
             case 2:
                 return "Tests";
 

@@ -1,7 +1,6 @@
 package com.themodernbit.projecthumane;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,17 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.themodernbit.projecthumane.ScenariosPackage.Scenario;
 import com.themodernbit.projecthumane.ScenariosPackage.ScenarioDBHandler;
-import com.themodernbit.projecthumane.StaticClasses.ScenarioDBStaticData;
 import com.themodernbit.projecthumane.StaticClasses.StableArrayAdapter;
-import com.themodernbit.projecthumane.TagsActivities.ChosenTranslationActivity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class LevelFragment extends Fragment {
@@ -84,11 +79,12 @@ public class LevelFragment extends Fragment {
 
             final ArrayList<String> list = new ArrayList<String>();
             for (int i = 0; i < 4; i++) {
-                list.add(theScenarios[i].getScenarioName());
+                list.add(theScenarios[i].getScenarioName() + " - " + theScenarios[i].getScenarioArabicName());
             }
 
             final StableArrayAdapter adapter = new StableArrayAdapter(theView.getContext(), R.layout.text_view_layout, list);
             listview.setAdapter(adapter);
+
 
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

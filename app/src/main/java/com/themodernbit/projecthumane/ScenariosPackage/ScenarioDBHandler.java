@@ -14,9 +14,10 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
 
     private static int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "UserDB.db";
-    private static final String TABLE_NAME = "scenariosTable";
+    private static final String SCENARIOS_TABLE_NAME = "scenariosTable";
     private static final String COLUMN_ID = "scenarioID";
     private static final String COLUMN_NAME = "scenarioName";
+    private static final String COLUMN_ARABIC_NAME = "scenarioArabicName";
     private static final String COLUMN_COMPLETENESS = "isScenarioComplete";
     public int ScenarioCount = 0;
 
@@ -27,10 +28,12 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-            String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY UNIQUE, " +
-                    COLUMN_NAME + " TEXT, " + COLUMN_COMPLETENESS + " BOOLEAN )";
+            String CREATE_TABLE_SCENARIOS = "CREATE TABLE " + SCENARIOS_TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY UNIQUE, " +
+                    COLUMN_NAME + " TEXT, " + COLUMN_ARABIC_NAME + " TEXT, " + COLUMN_COMPLETENESS + " BOOLEAN )";
 
-            sqLiteDatabase.execSQL(CREATE_TABLE);
+            sqLiteDatabase.execSQL(CREATE_TABLE_SCENARIOS);
+
+
     }
 
     @Override
@@ -47,9 +50,10 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
 
         args.put(COLUMN_ID, theScenario.getScenarioID());
         args.put(COLUMN_NAME, theScenario.getScenarioName());
+        args.put(COLUMN_ARABIC_NAME, theScenario.getScenarioArabicName());
         args.put(COLUMN_COMPLETENESS, theScenario.getCompleteness());
 
-        db.insert(TABLE_NAME, null, args);
+        db.insert(SCENARIOS_TABLE_NAME, null, args);
 
     }
 
@@ -59,7 +63,7 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
         ContentValues args = new ContentValues();
 
         args.put(COLUMN_COMPLETENESS, isCompleted);
-        db.update(TABLE_NAME , args, COLUMN_ID +" = "+ ID, null);
+        db.update(SCENARIOS_TABLE_NAME , args, COLUMN_ID +" = "+ ID, null);
     }
 
 
@@ -68,7 +72,7 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
         Scenario[] theScenario;
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String theQuery = "SELECT * FROM " + TABLE_NAME;
+        String theQuery = "SELECT * FROM " + SCENARIOS_TABLE_NAME;
         Cursor theCursor = db.rawQuery(theQuery, null);
         Count = theCursor.getCount();
 
@@ -78,7 +82,7 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
         theCursor.moveToFirst();
         for(int i = 0; i < Count ; i++)
         {
-            theScenario[i] = new Scenario(theCursor.getInt(0), theCursor.getString(1));
+            theScenario[i] = new Scenario(theCursor.getInt(0), theCursor.getString(1), theCursor.getString(2));
             theCursor.moveToNext();
         }
 
@@ -91,16 +95,16 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
     public void FillScenarioDB(){
 
 
-        Scenario theScenario = new Scenario(0, "Medical Scenario");
+        Scenario theScenario = new Scenario(0, "Medical", "طبي");
         insertScenario(theScenario);
 
-        theScenario = new Scenario(1,"Job Interview Scenario");
+        theScenario = new Scenario(1,"Job Interview", "مقابلة عمل");
         insertScenario(theScenario);
 
-        theScenario = new Scenario(2, "Restaurant Scenario");
+        theScenario = new Scenario(2, "Restaurant", "مطعم");
         insertScenario(theScenario);
 
-        theScenario = new Scenario(3, "Transportation Scenario");
+        theScenario = new Scenario(3, "Transportation", "وسائل النقل");
         insertScenario(theScenario);
 
     }

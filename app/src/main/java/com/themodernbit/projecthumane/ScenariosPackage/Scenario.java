@@ -12,11 +12,13 @@ package com.themodernbit.projecthumane.ScenariosPackage;
 public class Scenario {
     private int scenarioID;
     private String scenarioName;
+    private String scenarioArabicName;
     private boolean isScenarioComplete;
 
-    public Scenario( int ID, String sName){
+    public Scenario( int ID, String sName, String arabicName){
         this.scenarioID = ID;
         this.scenarioName = sName;
+        this.scenarioArabicName = arabicName;
         this.isScenarioComplete = false;
     }
 
@@ -25,10 +27,12 @@ public class Scenario {
     public int getScenarioID() {return this.scenarioID;}
     public String getScenarioName() {return this.scenarioName;}
     public boolean getCompleteness() {return this.isScenarioComplete;}
+    public String getScenarioArabicName() {return this.scenarioArabicName;}
 
     public void setScenarioID(int ID) {this.scenarioID = ID;}
     public void setScenarioName(String sName) {this.scenarioName = sName;}
     public void setScenarioComplete(boolean isComplete) {this.isScenarioComplete = isComplete;}
+    public void setScenarioArabicName(String arabicName) {this.scenarioArabicName = arabicName;}
 
 
 }
