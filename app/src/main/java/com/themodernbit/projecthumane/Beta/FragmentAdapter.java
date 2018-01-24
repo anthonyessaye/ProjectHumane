@@ -1,5 +1,6 @@
 package com.themodernbit.projecthumane.Beta;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,6 +12,7 @@ import com.themodernbit.projecthumane.LevelFragment;
  */
 
 public class FragmentAdapter  extends FragmentPagerAdapter{
+private static String KEY_TABNUMBER = "KeyNumber";
 
     public FragmentAdapter(FragmentManager fm){
         super(fm);
@@ -23,9 +25,11 @@ public class FragmentAdapter  extends FragmentPagerAdapter{
             case 0:
                 return new LevelFragment();
             case 1:
-                Fragment theFragment = new LevelFragment();
-
-                return new LevelFragment();
+                Bundle args = new Bundle();
+                args.putInt(KEY_TABNUMBER, 1);
+                LevelFragment fragment = new LevelFragment();
+                fragment.setArguments(args);
+                return fragment;
             case 2:
                 return new LevelFragment();
 
@@ -44,6 +48,7 @@ public class FragmentAdapter  extends FragmentPagerAdapter{
     public CharSequence getPageTitle(int position){
         switch(position){
             case 0:
+
                 return "My Courses";
             case 1:
                 return "Featured";
