@@ -113,10 +113,19 @@ public class LevelFragment extends Fragment {
                     if(listCount == 2) { // HERE WE ARE ON SECOND LIST AND WANT TO CREATE ACTIVITY
                         final Statements[] theStatements = dbHandler.getRelatedAnswers(position);
 
-                        Intent theIntent = new Intent(getContext(), ScenarioExplanationActivity.class);
+                        list.clear(); // CLEARING FIRST LIST
+                        for (int i = 0; i < theStatements.length; i++) { //ADD NEW ITEMS
+                            if(theStatements[i].getqID_FK() == -1)
+                                list.add(theStatements[i].getStatement() + " \n " + theStatements[i].getArabicStatement());
+                        }
+
+                        final StableArrayAdapter adapter = new StableArrayAdapter(theView.getContext(), R.layout.text_view_layout, list);
+                        listview.setAdapter(adapter);
+
+                      /*  Intent theIntent = new Intent(getContext(), ScenarioExplanationActivity.class);
                         theIntent.putExtra(KEY_TRANSFERFIRSTDATA,firstPageStatements[0].getStatement());
                         //theIntent.putExtra(KEY_TRANSFERSECONDDATA, theStatements);
-                        startActivity(theIntent);
+                        startActivity(theIntent); */
                     }
 
                     if(listCount == 1) {
