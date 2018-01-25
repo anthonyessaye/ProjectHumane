@@ -48,7 +48,7 @@ public class CapturedWordActivity extends AppCompatActivity {
         final ListView listview = (ListView) findViewById(R.id.listview);
 
         final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < TagsListArray.length; ++i) {
             list.add(CopyOfList[i] + " " + TagsListArray[i]);
         }
 

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.themodernbit.emerald.ScenariosPackage.Scenario;
 import com.themodernbit.emerald.ScenariosPackage.ScenarioDBHandler;
 import com.themodernbit.emerald.ScenariosPackage.Statements;
+import com.themodernbit.emerald.StaticClasses.RVAdapter;
 import com.themodernbit.emerald.StaticClasses.StableArrayAdapter;
 
 import java.util.ArrayList;

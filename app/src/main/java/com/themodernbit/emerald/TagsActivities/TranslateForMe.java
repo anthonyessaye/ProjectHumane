@@ -1,6 +1,7 @@
 package com.themodernbit.emerald.TagsActivities;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
@@ -12,7 +13,7 @@ import com.google.cloud.translate.Translation;
 
 public class TranslateForMe {
 
-    private static final String API_KEY = "AIzaSyAHV8PQG6G5CFGgtn5Q0Xc5X0hmYH7l6lQ";
+    private static final String API_KEY = "AIzaSyB4WNm2Gi5OFXCWOy9WrCGmOv2btWyix5M";
     private String[] WordsToTranslate;
     private Translation translation;
 
@@ -21,7 +22,7 @@ public class TranslateForMe {
     public TranslateForMe(String[] TranslateArray) {
         WordsToTranslate = TranslateArray;
     }
-
+    public TranslateForMe(String TranslateString){ WordsToTranslate= TranslateString.split("\\s");}
 
     public void TranslateWords() {
 
@@ -36,7 +37,8 @@ public class TranslateForMe {
                 Translate translate = options.getService();
 
 
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < WordsToTranslate.length; i++) {
+                    Log.e("TAG",WordsToTranslate[i]);
                     translation = translate.translate(WordsToTranslate[i], Translate.TranslateOption.targetLanguage("ar"));
                     WordsToTranslate[i] = translation.getTranslatedText();
                 }

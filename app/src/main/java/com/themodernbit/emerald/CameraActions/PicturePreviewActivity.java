@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,14 +21,16 @@ import com.otaliastudios.cameraview.AspectRatio;
 import com.otaliastudios.cameraview.CameraUtils;
 import com.themodernbit.emerald.CapturedWordActivity;
 import com.themodernbit.emerald.R;
+import com.themodernbit.emerald.TagsActivities.TranslateForMe;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.util.Locale;
 
 
-public class PicturePreviewActivity extends Activity {
+public class PicturePreviewActivity extends Activity implements TextToSpeech.OnInitListener {
 
     private static String KEY_LIST_TAGS = "Tags";
 
@@ -45,6 +49,10 @@ public class PicturePreviewActivity extends Activity {
 
     private Button AnalyzeButton;
     private Button ShowListButton;
+    private Button PlayDescription;
+
+    private TextToSpeech tts;
+
 
     private static WeakReference<byte[]> image;
 
@@ -67,6 +75,9 @@ public class PicturePreviewActivity extends Activity {
 
         AnalyzeButton = (Button) findViewById(R.id.btnAnalyze);
         ShowListButton = (Button) findViewById(R.id.btnShowItems);
+        PlayDescription = (Button) findViewById(R.id.playDescripton);
+
+        tts = new TextToSpeech(this, this);
 
 
         final MessageView captureLatency = findViewById(R.id.captureLatency);
@@ -112,8 +123,7 @@ public class PicturePreviewActivity extends Activity {
     }
 
     public void onClickAnalyze(View view){
-        AnalyzeButton.setVisibility(View.GONE);
-        ShowListButton.setVisibility(View.VISIBLE);
+
 
         final ByteArrayOutputStream OutputStream = new ByteArrayOutputStream();
         ImageToAnalyze.compress(Bitmap.CompressFormat.JPEG,100,OutputStream);
@@ -151,7 +161,7 @@ public class PicturePreviewActivity extends Activity {
         @Override
             protected void onPostExecute(String s){
 
-                mDialog.dismiss();
+
 
                 AnalysisResult theFinalResult = new Gson().fromJson(s, AnalysisResult.class);
                 StringBuilder strDescriptionBuilder = new StringBuilder();
@@ -170,7 +180,25 @@ public class PicturePreviewActivity extends Activity {
 
                 theMessage = strDescriptionBuilder.toString();
                 theTags = strTagsBuilder.toString();
-                captureDescription.setMessage(theMessage);
+
+
+                String theMessageTranslated = theMessage;
+                TranslateForMe theTranslation = new TranslateForMe(theMessage);
+                theTranslation.TranslateWords();
+
+                while(!theTranslation.isDone) {}
+                StringBuilder theBuild = new StringBuilder();
+                for(int i = 0; i<theTranslation.getWordsToTranslate().length;i++){
+                    if(theTranslation.getWordsToTranslate()[i].length()>1) {
+                        theBuild.append(theTranslation.getWordsToTranslate()[i]);
+                        theBuild.append(" ");
+                    }
+                }
+                mDialog.dismiss();
+                AnalyzeButton.setVisibility(View.GONE);
+                ShowListButton.setVisibility(View.VISIBLE);
+                PlayDescription.setVisibility(View.VISIBLE);
+                captureDescription.setMessage(theMessage + "\n" + theBuild.toString());
         }
 
         @Override
@@ -195,4 +223,50 @@ public class PicturePreviewActivity extends Activity {
 
     }
 
+
+
+    public void onTTSClick(View view){
+        String TextToSpeak = theMessage;
+        tts.speak(TextToSpeak, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
+
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+
+            int result = tts.setLanguage(Locale.US);
+            result = tts.setPitch((float) 0.8);
+            tts.setSpeechRate((float) 0.6);
+
+            if (result == TextToSpeech.LANG_MISSING_DATA
+                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "This Language is not supported");
+            } else {
+
+                //   onTTSClick(View view);
+            }
+
+        } else {
+            Log.e("TTS", "Initilization Failed!");
+        }
+    }
+
+
+
+    @Override
+    public void onDestroy() {
+        // Don't forget to shutdown tts!
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }
