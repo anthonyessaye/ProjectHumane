@@ -208,6 +208,21 @@ public class ScenarioDBHandler extends SQLiteOpenHelper {
         theStatement = new Statements(5,1, "Because, i think my experience is a good addition to your team.","لأني اعتقد ان تجربتي هي أضافه جيده لفريقك." , 1);
         insertStatement(theStatement);
 
+        theStatement = new Statements(6,1, "I think that my experience in the industry and my ability to work autonomously make me a good match for this position."
+                ,"اعتقد ان تجربتي في هذا المجال وقدرتي علي العمل بشكل مستقل يجعلني مرشح جيد لهذا المنصب." , 1);
+        insertStatement(theStatement);
+
+        theStatement = new Statements(7,1, "Your company provides many services that I have had experience with, in a variety of capacities. I believe that my familiarity with the industry would make me a good fit for this position."
+                ,"شركتكم توفر العديد من الخدمات التي كان لي خبره فيها. واعتقد ان تجربتي في هذا المجال من شانه ان يجعلني مناسب لهذا المنصب.\n" , 1);
+        insertStatement(theStatement);
+
+        theStatement = new Statements(8,1, "I have the motivation, experience, and superior communication skills to be an asset to your company.",
+                "لدي الحافز ، والخبرة ، والقدرة علي التواصل بتفوق لأكون أضافه مهمة للشركة." , 1);
+        insertStatement(theStatement);
+
+        theStatement = new Statements(9,1, "Because, i think my experience is a good addition to your team.",
+                "لأني اعتقد ان تجربتي هي أضافه جيده لفريقك." , 1);
+        insertStatement(theStatement);
 
 
     }
