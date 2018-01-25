@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.themodernbit.projecthumane.ScenarioExplanationActivity">
+    tools:context="com.themodernbit.emerald.com.themodernbit.emerald.ScenarioExplanationActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

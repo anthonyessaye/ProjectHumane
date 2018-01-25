@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.themodernbit.projecthumane.SignUpActivity">
+    tools:context="com.themodernbit.emerald.com.themodernbit.emerald.SignUpActivity">
 
 <LinearLayout
     android:layout_width="match_parent"

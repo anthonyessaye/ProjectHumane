@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:id="@+id/fragment_main"
-    tools:context="com.themodernbit.projecthumane.MainFragment">
+    tools:context="com.themodernbit.emerald.com.themodernbit.emerald.MainFragment">
 
 
 

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/content_main"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.themodernbit.projecthumane.MainActivity"
+    tools:context="com.themodernbit.emerald.com.themodernbit.emerald.MainActivity"
     tools:showIn="@layout/app_bar_main"
     android:orientation="vertical"
     android:layout_gravity="">

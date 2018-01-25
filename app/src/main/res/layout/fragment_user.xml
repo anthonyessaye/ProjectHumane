@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.themodernbit.projecthumane.UserFragment"
+    tools:context="com.themodernbit.emerald.com.themodernbit.emerald.UserFragment"
     xmlns:card_view="http://schemas.android.com/apk/">
 
     <ScrollView
