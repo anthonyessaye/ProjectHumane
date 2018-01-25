@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.api.GoogleAPI;
+import com.google.api.GoogleAPIException;
+import com.google.api.translate.Language;
 import com.memetix.mst.translate.Translate;
 import com.themodernbit.emerald.TagsActivities.ChosenTranslationActivity;
 import com.themodernbit.emerald.StaticClasses.StableArrayAdapter;
@@ -45,8 +48,8 @@ public class CapturedWordActivity extends AppCompatActivity {
         final ListView listview = (ListView) findViewById(R.id.listview);
 
         final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < TagsListArray.length; ++i) {
-            list.add(CopyOfList[i] + " " + TranslatorObject.getWordsToTranslate()[i]);
+        for (int i = 0; i < 10; ++i) {
+            list.add(CopyOfList[i] + " " + TagsListArray[i]);
         }
 
 
@@ -71,29 +74,9 @@ public class CapturedWordActivity extends AppCompatActivity {
 
 
 
-    class MyAsyncTask extends AsyncTask<Void, Integer, Boolean> {
 
-        @Override
 
-        protected Boolean doInBackground(Void... arg0) {
 
-            Translate.setClientId("MicrosoftTranslatorJavaAPI");
-            Translate.setClientSecret("a5f63baeeb9947ee9fbed3fda6c70770");
 
-            try {
-
-              //  translatedText = Translate.execute("I should probably set this to something a little less profane", Language.ENGLISH, Language.FRENCH);
-
-            } catch(Exception e) {
-
-            //    translatedText = e.toString();
-
-            }
-
-            return true;
-
-        }
-
-    }
 
 }
